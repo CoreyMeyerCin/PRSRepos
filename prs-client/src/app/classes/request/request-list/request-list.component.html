@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<div>
+    <span id="pageTitle">Request List</span> | 
+    <a routerLink="/request/create">New</a>
+</div>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Delivery Mode</th>
+            <th>Total</th>
+            <th>User</th>
+            <th>UserId</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of requests">
+            <td>{{r.id}}</td>
+            <td>{{r.description}}</td>
+            <td>{{r.status}}</td>
+            <td>{{r.deliveryMode}}</td>
+            <td>{{r.total | currency}}</td>
+            <td>{{r.user.username}}</td>
+            <td>{{r.userId}}</td>
+            <td>
+                <a routerLink="/request/detail/{{r.id}}">Detail</a> |
+                <a routerLink="/request/edit/{{r.id}}">Edit</a> |
+                <a routerLink="request/{{r.id}}">Lines</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

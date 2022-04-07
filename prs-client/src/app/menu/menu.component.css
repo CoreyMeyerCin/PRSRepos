@@ -1,0 +1,19 @@
+nav{
+    background-color: #454545;
+}
+li{
+    display: inline-block;
+}
+a{
+    color: silver;
+    padding: 0 10px;
+    text-decoration:none;
+}
+a:hover{
+    color:white;
+    background-color:black;
+}
+ul{
+    padding-left:0;
+    margin-left:0;
+}

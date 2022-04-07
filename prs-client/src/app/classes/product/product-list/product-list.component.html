@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<div>
+    <span id="pageTitle">Product List</span> | 
+    <a routerLink="/product/create">New</a>
+</div>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Part Number</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Unit</th>
+            <th>Photo Path</th>
+            <th>VendorId</th>
+            <th>Vendor Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{p.id}}</td>
+            <td>{{p.partNbr}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price | currency}}</td>
+            <td>{{p.unit}}</td>
+            <td>{{p.photoPath}}</td>
+            <td>{{p.vendorId}}</td>
+            <td>{{p.vendor.name}}</td>
+            <td>
+                <a routerLink="/product/detail/{{p.id}}">Detail</a> |
+                <a routerLink="/product/edit/{{p.id}}">Edit</a> 
+            </td>
+        </tr>
+    </tbody>
+</table>

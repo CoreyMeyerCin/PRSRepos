@@ -1,0 +1,50 @@
+
+<app-menu></app-menu>
+<div>
+    <span id="pageTitle">Request Detail</span>
+    <table *ngIf="request" class="table table-sm">
+        <tr>
+            <th>Id:</th>
+            <td>
+                <input [(ngModel)]="request.id"type="number" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Description:</th>
+            <td>
+                <input [(ngModel)]="request.description"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Justification:</th>
+            <td>
+                <input [(ngModel)]="request.justification"type="text"readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Delivery Mode:</th>
+            <td>
+                <input [(ngModel)]="request.deliveryMode"type="text"readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td>
+                <input [(ngModel)]="request.status"type="text"readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Total:</th>
+            <td>
+                <input [(ngModel)]="request.total"type="text"readonly>
+            </td>
+        </tr>
+        <th>Active:</th>
+    </table>
+    <div>
+        <button (click)="remove()" class="btn btn-danger">Delete</button>
+        <span *ngIf="showVerifyButton">
+            | <button (click) ="verifyRemove()" class="btn btn-danger">Verify Button</button>
+        </span>
+    </div>
+</div>

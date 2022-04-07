@@ -1,0 +1,68 @@
+
+<app-menu></app-menu>
+<div>
+    <span id="pageTitle">Vendor Detail</span>
+    <table *ngIf="vendor" class="table table-sm">
+        <tr>
+            <th>Id:</th>
+            <td>
+                <input [(ngModel)]="vendor.id"type="number" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Code:</th>
+            <td>
+                <input [(ngModel)]="vendor.code"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Name:</th>
+            <td>
+                <input [(ngModel)]="vendor.name"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Address:</th> 
+            <td>
+                <input [(ngModel)]="vendor.address"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>City:</th> 
+            <td>
+                <input [(ngModel)]="vendor.city"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>State:</th> 
+            <td>
+                <input [(ngModel)]="vendor.state"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Zipcode:</th> 
+            <td>
+                <input [(ngModel)]="vendor.zip"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Phone:</th> 
+            <td>
+                <input [(ngModel)]="vendor.phone"type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>Email:</th> 
+            <td>
+                <input [(ngModel)]="vendor.email"type="text" readonly>
+            </td>
+        </tr>
+        <th>Active:</th>
+    </table>
+    <div>
+        <button (click)="remove()" class="btn btn-danger">Delete</button>
+        <span *ngIf="showVerifyButton">
+            | <button (click) ="verifyRemove()" class="btn btn-danger">Verify Button</button>
+        </span>
+    </div>
+</div>
