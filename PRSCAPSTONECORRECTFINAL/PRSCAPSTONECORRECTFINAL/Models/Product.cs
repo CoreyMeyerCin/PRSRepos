@@ -7,7 +7,7 @@ namespace PRSCAPSTONECORRECTFINAL.Models
     public class Product
     {
         public int Id { get; set; }
-        private static int NextId { get; set; }
+        
         [Required]
         [StringLength(32)]
         public string PartNbr { get; set; }
@@ -29,7 +29,7 @@ namespace PRSCAPSTONECORRECTFINAL.Models
 
         public Product()
         {
-            Id = ++NextId;
+            
         }
     }
 }

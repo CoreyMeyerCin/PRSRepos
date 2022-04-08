@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { RequestService } from '../request.service';
 import { Request } from '../request.class';
 import { UserService } from '../../user/user.service';
@@ -15,34 +15,41 @@ export class RequestCreateComponent implements OnInit {
 
   request: Request = new Request();
   users: User[] = [];
-
+  
   constructor(
     private router: Router,
+    private route:ActivatedRoute,
     private requestsvc: RequestService,
     private usersvc: UserService,
     private systemsvc: SystemServiceService
   ) { }
 
   save(): void {
-    this.requestsvc.create(this.request).subscribe(
-      res => { console.log("Response from request create", res);
-      this.router.navigateByUrl(`/requests/detail/${res.id}`);
+    this.request.userId = +this.request.userId;
+    this.requestsvc.create(this.request).subscribe({
+      next:(res) => { 
+        console.log("Response from request create", res);
+      this.router.navigateByUrl(`/request/list`);
     },
-    err => { console.log(err); }
-    );    
+    error:(err) => 
+    { console.log(err); }
+  });    
+  
   }
 
   ngOnInit() {
-    this.systemsvc.checkIfLoggedIn();
-    this.usersvc.list().subscribe(
-      users => {
-        this.users = users;
+    // this.systemsvc.checkIfLoggedIn();
+   
+    this.usersvc.list().subscribe({
+      next:(res) => {
+        this.users = this.users;
       }, 
-      err => {
+      error:(err) => {
         console.error(err);
       }
-    );
+    });
     this.request.userId = this.systemsvc._user!.id;
   }
+  
 
 }

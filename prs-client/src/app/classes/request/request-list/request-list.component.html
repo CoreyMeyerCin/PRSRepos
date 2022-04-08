@@ -3,7 +3,7 @@
 <div class="header">
     <span class="pagetitle">Request List</span> |
     <span class="createlink">
-        <a routerLink="/requests/create">New</a>
+        <a routerLink="/request/create">New</a> | 
     </span>
     <input class="search" [(ngModel)]="searchCriteria" type="text" placeholder="Search">
 </div>
@@ -16,13 +16,11 @@
             <td><a (click)="sortBy('description')">Description</a></td>
             <td><a (click)="sortBy('justification')">Justification</a></td>
             <td><a (click)="sortBy('total')">Total</a></td>
-            <td>Modify</td>
+            <td>Actions</td>
         </tr>
         <tr *ngFor="let request of requests | searchRequest:searchCriteria | sort:sortCriteria">
             <td>{{request.id}}</td>
-            <td>
-                {{request.status}}
-            </td>
+            <td>{{request.status}}</td>
             <td>{{request.user.username}}</td>
             <td>{{request.description}}</td>
             <td>{{request.justification}}</td>

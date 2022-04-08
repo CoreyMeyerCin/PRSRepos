@@ -1,10 +1,12 @@
 <app-menu></app-menu>
+
 <div class="component">
     <div class="header">      
       <span class="pagetitle">Request Create</span> | 
       <span class="createlink">
         <a routerLink="/requests/list">Back to request list</a>
       </span>
+
     </div>
 
     <table class="table table.sm" style="table-layout: fixed;">
@@ -14,7 +16,7 @@
         </tr>
         <tr>
           <td>User Id:</td>
-          <td><input [(ngModel)]="request.userId" type="number" disabled></td>
+          <td><input [(ngModel)]="request.userId" type="number" disable></td>
         </tr>
         <tr>
           <td>Description:</td>
@@ -32,11 +34,11 @@
           <td>Delivery Mode:</td>
           <td><input [(ngModel)]="request.deliveryMode" type="string" ></td>
         </tr>
-        <tr hidden>
+        <tr>
           <td>Status:</td>
           <td><input [(ngModel)]="request.status" type="string" ></td>
         </tr>
-        <tr hidden>
+        <tr>
           <td>Total:</td>
           <td><input [(ngModel)]="request.total" type="number" disabled></td>
         </tr>

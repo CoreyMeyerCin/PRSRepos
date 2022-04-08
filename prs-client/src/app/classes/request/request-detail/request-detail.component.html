@@ -6,7 +6,7 @@
         <a routerLink="/requests/edit/{{request.id}}">Other</a>
       </span> |
       <span class="createlink">
-        <a routerLink="/requests/list">Back to request list</a>
+        <a routerLink="/request/list">Back to request list</a>
       </span>
     </div>
     <table class="table table.sm">
@@ -61,7 +61,8 @@
     <p>
       <span class="tableheader">Total: </span><span>{{request.total | currency}}</span>
     </p>
-    <button class="btn btn-primary btn-sm" (click)="addLine(request)" style="color:white">New Line</button> | 
+   
+    <button class="btn btn-primary btn-sm" (click)="goRlCreate(request)" style="color:white">New Line</button> | 
     <button (click)="save()" class="btn btn-success btn-sm">Submit Request</button>
   </div>
 </div>

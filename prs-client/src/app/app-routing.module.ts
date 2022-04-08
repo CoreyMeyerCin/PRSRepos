@@ -9,7 +9,7 @@ import { RequestDetailComponent } from './classes/request/request-detail/request
 import { RequestEditComponent } from './classes/request/request-edit/request-edit.component';
 import { RequestListComponent } from './classes/request/request-list/request-list.component';
 import { RequestReviewComponent } from './classes/request/request-review/request-review.component';
-// import { RequestlineEditComponent } from './classes/requestline/requestline-edit/requestline-edit.component';
+import { RequestlineCreateComponent } from './classes/requestline/requestline-create/requestline-create.component';
 import { UserCreateComponent } from './classes/user/user-create/user-create.component';
 import { UserDetailComponent } from './classes/user/user-detail/user-detail.component';
 import { UserEditComponent } from './classes/user/user-edit/user-edit.component';
@@ -51,7 +51,7 @@ const routes: Routes = [
   {path: "product/detail/:id", component: ProductDetailComponent},
 
   {path: "request/list/request:id", component: RequestReviewComponent},
-
+  {path: "requestlines/create/:id", component: RequestlineCreateComponent},
   
 
 

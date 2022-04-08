@@ -27,7 +27,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vendor",
+                name: "Vendors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -43,7 +43,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vendor", x => x.Id);
+                    table.PrimaryKey("PK_Vendors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,6 +55,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Justification = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DeliveryMode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    RejectionReason = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Status = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Total = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -71,7 +72,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -85,11 +86,11 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Product_Vendor_VendorId",
+                        name: "FK_Products_Vendors_VendorId",
                         column: x => x.VendorId,
-                        principalTable: "Vendor",
+                        principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -108,9 +109,9 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 {
                     table.PrimaryKey("PK_RequestLines", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RequestLines_Product_ProductId",
+                        name: "FK_RequestLines_Products_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Product",
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -122,20 +123,20 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_Id",
-                table: "Product",
+                name: "IX_Products_Id",
+                table: "Products",
                 column: "Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_PartNbr",
-                table: "Product",
+                name: "IX_Products_PartNbr",
+                table: "Products",
                 column: "PartNbr",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_VendorId",
-                table: "Product",
+                name: "IX_Products_VendorId",
+                table: "Products",
                 column: "VendorId");
 
             migrationBuilder.CreateIndex(
@@ -178,14 +179,14 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendor_Code",
-                table: "Vendor",
+                name: "IX_Vendors_Code",
+                table: "Vendors",
                 column: "Code",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendor_Id",
-                table: "Vendor",
+                name: "IX_Vendors_Id",
+                table: "Vendors",
                 column: "Id",
                 unique: true);
         }
@@ -196,13 +197,13 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                 name: "RequestLines");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Requests");
 
             migrationBuilder.DropTable(
-                name: "Vendor");
+                name: "Vendors");
 
             migrationBuilder.DropTable(
                 name: "Users");

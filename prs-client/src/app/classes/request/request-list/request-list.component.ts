@@ -31,6 +31,8 @@ export class RequestListComponent implements OnInit {
       }
       this.sortCriteria = prop;
     }
+
+    
   
   ngOnInit(): void {
     // this.systemsvc.checkIfLoggedIn();

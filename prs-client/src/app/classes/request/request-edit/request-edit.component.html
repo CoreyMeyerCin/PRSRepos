@@ -3,7 +3,7 @@
     <div class="header">
         <span class="pagetitle">Request Edit</span>
         <span class="createlink">
-            <a routerLink="/request/detail.{{request.id}}">Lines</a>
+            <a routerLink="/request/detail/{{request.id}}">Lines</a>
         </span>
         <span class ="createlink">
             <a routerLink="/request/list">Back to Request List</a>
@@ -56,7 +56,7 @@
     <button (click)="save()" class="btn btn-primary btn-sm">Save</button>
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <button (click)="delete()" [disabled]="verifyDelete" class="btn btn-danger btn-sm">Delete Request</button>
-    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <button (click)="confirmdel()" type="checkbox" (click)="verify()">Delete Request</button>
+    <!-- <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button (click)="confirmdel()" type="checkbox" (click)="verify()">Delete Request</button> -->
 </div>
 </div>

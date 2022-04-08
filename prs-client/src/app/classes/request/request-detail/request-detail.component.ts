@@ -40,7 +40,8 @@ export class RequestDetailComponent implements OnInit {
       this.requestline.requestId = request.id;
       this.requestlinesvc.create(this.requestline).subscribe({
         next:(res)=>{
-          console.log("Response from the requestline-create",res)
+          console.log("Response from the requestline-create(newline) button",res)
+          
         },
         error:(err)=>{
           console.error(err);

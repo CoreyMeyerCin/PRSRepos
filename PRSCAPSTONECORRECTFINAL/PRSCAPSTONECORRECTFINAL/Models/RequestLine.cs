@@ -6,7 +6,6 @@ namespace PRSCAPSTONECORRECTFINAL.Models
     {
 
         public int Id { get; set; }
-        public static int NextId { get; set; }
 
         public int RequestId { get; set; }
 
@@ -19,7 +18,6 @@ namespace PRSCAPSTONECORRECTFINAL.Models
 
         public RequestLine()
         {
-            Id = ++NextId;
         }
     }
 }

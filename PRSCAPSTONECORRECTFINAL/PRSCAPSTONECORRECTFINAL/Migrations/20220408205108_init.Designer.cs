@@ -9,15 +9,15 @@ using PRSCAPSTONECORRECTFINAL.Models;
 namespace PRSCAPSTONECORRECTFINAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220328170805_Init2")]
-    partial class Init2
+    [Migration("20220408205108_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.12")
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("PRSCAPSTONECORRECTFINAL.Models.Product", b =>
@@ -62,7 +62,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
 
                     b.HasIndex("VendorId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("PRSCAPSTONECORRECTFINAL.Models.Request", b =>
@@ -86,6 +86,10 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -245,7 +249,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Vendor");
+                    b.ToTable("Vendors");
                 });
 
             modelBuilder.Entity("PRSCAPSTONECORRECTFINAL.Models.Product", b =>
@@ -279,7 +283,7 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                         .IsRequired();
 
                     b.HasOne("PRSCAPSTONECORRECTFINAL.Models.Request", "Request")
-                        .WithMany()
+                        .WithMany("RequestLines")
                         .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -287,6 +291,11 @@ namespace PRSCAPSTONECORRECTFINAL.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Request");
+                });
+
+            modelBuilder.Entity("PRSCAPSTONECORRECTFINAL.Models.Request", b =>
+                {
+                    b.Navigation("RequestLines");
                 });
 #pragma warning restore 612, 618
         }

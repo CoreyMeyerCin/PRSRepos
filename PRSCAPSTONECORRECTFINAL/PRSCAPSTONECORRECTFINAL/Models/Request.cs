@@ -8,7 +8,7 @@ namespace PRSCAPSTONECORRECTFINAL.Models
     public class Request
     {
         public int Id { get; set; }
-        private static int NextId { get; set; }
+  
         [Required]
         [StringLength(100)]
         public string Description { get; set; }
@@ -18,6 +18,8 @@ namespace PRSCAPSTONECORRECTFINAL.Models
         [Required]
         [StringLength(20)]
         public string DeliveryMode { get; set; } = "Pickup";
+        [StringLength(80)]
+        public string RejectionReason { get; set; }
         [Required]
         [StringLength(10)]
         public string Status { get; set; } = "NEW";
@@ -34,7 +36,6 @@ namespace PRSCAPSTONECORRECTFINAL.Models
 
         public Request()
         {
-            Id = ++NextId;
         }
     }
 }

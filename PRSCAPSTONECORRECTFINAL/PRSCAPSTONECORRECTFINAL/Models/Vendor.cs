@@ -5,7 +5,7 @@ namespace PRSCAPSTONECORRECTFINAL.Models
     public class Vendor
     {
         public int Id { get; set; }
-        private static int NextId { get; set; }
+        
         [Required]
         [StringLength(32)]
         public string Code { get; set; }
@@ -34,7 +34,7 @@ namespace PRSCAPSTONECORRECTFINAL.Models
 
         public Vendor()
         {
-            Id = ++NextId;
+           
         }
     }
 }
