@@ -1,17 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestLine } from '../../requestline/requestline.class';
-import { SystemServiceService } from '../../user/system-service.service';
-import { User } from '../../user/user.class';
-import { UserService } from '../../user/user.service';
 import { RequestService } from '../request.service';
 import { Request } from '../request.class';
+import { User } from '../../user/user.class';
+import { UserService } from '../../user/user.service';
+import { RequestLine } from '../../requestline/requestline.class';
+// import { RequestLineService} from '../../requestlines/requestline.service';
+import { SystemServiceService } from '../../user/system-service.service';
+import{animate,state,style,transition,trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-request-review',
   templateUrl: './request-review.component.html',
-  styleUrls: ['./request-review.component.css']
+  styleUrls: ['./request-review.component.css'],
+  animations: [
+    trigger('detailExpand', [
+    state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+    state('expanded', style({height: '*'})),
+    transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
+
 export class RequestReviewComponent implements OnInit {
+
   requests: Request[] = [];
   users: User[] = [];
   sortCriteria: string = "id";
@@ -23,6 +34,12 @@ export class RequestReviewComponent implements OnInit {
   idx: number = 0;
   request!: Request;
   showreject: boolean = false;
+
+  constructor(
+    private requestsvc: RequestService,
+    private usersvc: UserService,
+    private systemsvc: SystemServiceService,
+  ) { }
 
   showtbl(id:any) { 
     if(this.showtable) {
@@ -94,11 +111,7 @@ export class RequestReviewComponent implements OnInit {
     this.sortCriteria = prop;
   }
 
-  constructor(
-    private requestsvc: RequestService,
-    private usersvc: UserService,
-    private systemsvc: SystemServiceService,
-  ) { }
+ 
 
   ngOnInit() {
     this.systemsvc.checkIfLoggedIn();

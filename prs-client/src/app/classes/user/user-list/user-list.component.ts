@@ -17,12 +17,11 @@ users:User[]=[];
     this.usersvc.list().subscribe({
       next:(res) =>{
         this.users=res;
-        console.debug("Customers",res);
+        console.debug("Vendors",res);
       },
       error:(err) =>{
         console.error(err);
       }
     });
   }
-
 }

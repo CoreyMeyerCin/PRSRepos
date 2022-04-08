@@ -1,47 +1,62 @@
-
 <app-menu></app-menu>
-<div>
-    <span id="pageTitle">Request Change</span>
-    <table *ngIf="request" class="table table-sm">
-        <tr>
-            <th>Id:</th>
-            <td>
-                <input [(ngModel)]="request.id"type="number" readonly>
-            </td>
-        </tr>
-        <tr>
-            <th>Description:</th>
-            <td>
-                <input [(ngModel)]="request.description"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Justification:</th>
-            <td>
-                <input [(ngModel)]="request.justification"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Delivery Mode:</th>
-            <td>
-                <input [(ngModel)]="request.deliveryMode"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Status:</th>
-            <td>
-                <input [(ngModel)]="request.status"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Total:</th>
-            <td>
-                <input [(ngModel)]="request.total"type="text"readonly>
-            </td>
-        </tr>
-    </table>
-    <div>
-        <button (click)="save()" class="btn btn-primary">Edit</button>
-        
+<div class="component" *ngIf="request">
+    <div class="header">
+        <span class="pagetitle">Request Edit</span>
+        <span class="createlink">
+            <a routerLink="/request/detail.{{request.id}}">Lines</a>
+        </span>
+        <span class ="createlink">
+            <a routerLink="/request/list">Back to Request List</a>
+        </span>
     </div>
+    <table class="table table-sm" style="table-layout:fixed;">
+    <tr>
+        <td>Id:</td>
+        <td [attr.colspan]="2">{{request.id}}</td>
+    </tr>
+    <tr *ngIf="request.rejectionReason" style="color: rgb(207,0,0);"></tr>
+    <tr>
+        <td>Rejeciton Reason:</td>
+        <td [attr.colspan]="2">{{request.rejectionReason}}</td>
+    </tr>
+    <tr hidden>
+        <td>User Id:</td>
+        <td>{{request.userId}}</td>
+        <td><input [(ngModel)]="request.userId" type="number" disabled></td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td>{{request.deliveryMode}}</td>
+        <td><input [(ngModel)]="request.deliveryMode" type="string"></td>
+    </tr>
+    <tr>
+        <td>Justification:</td>
+        <td>{{request.justification}}</td>
+        <td><input [(ngModel)]="request.justification" type="string"></td>
+    </tr>
+    <tr>
+        <td>Delivery Mode:</td>
+        <td>{{request.deliveryMode}}</td>
+        <td><input [(ngModel)]="request.deliveryMode" type="string"></td>
+    </tr>
+    <tr>
+        <td>Status:</td>
+        <td>{{request.status}}</td>
+        <td><input [(ngModel)]="request.status" type="string"></td>
+    </tr>
+    
+    <tr>
+        <td>Total:</td>
+        <td>{{request.total}}</td>
+        <td><input [(ngModel)]="request.total" type="string"></td>
+    </tr>
+</table>
+<div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button (click)="save()" class="btn btn-primary btn-sm">Save</button>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button (click)="delete()" [disabled]="verifyDelete" class="btn btn-danger btn-sm">Delete Request</button>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button (click)="confirmdel()" type="checkbox" (click)="verify()">Delete Request</button>
+</div>
 </div>

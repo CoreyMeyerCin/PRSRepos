@@ -7335,11 +7335,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\prs\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL.csproj",
+      "projectUniqueName": "C:\\PrsRepos\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL.csproj",
       "projectName": "PRSCAPSTONECORRECTFINAL",
-      "projectPath": "C:\\prs\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL.csproj",
+      "projectPath": "C:\\PrsRepos\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL.csproj",
       "packagesPath": "C:\\Users\\Corey\\.nuget\\packages\\",
-      "outputPath": "C:\\prs\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL\\obj\\",
+      "outputPath": "C:\\PrsRepos\\PRSCAPSTONECORRECTFINAL\\PRSCAPSTONECORRECTFINAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Corey\\AppData\\Roaming\\NuGet\\NuGet.Config",

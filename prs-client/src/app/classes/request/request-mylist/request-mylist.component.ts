@@ -6,40 +6,40 @@ import { UserService } from '../../user/user.service';
 import { RequestLine } from '../../requestline/requestline.class';
 import { RequestlineService } from '../../requestline/requestline.service';
 import { SystemServiceService } from '../../user/system-service.service';
-import { from } from 'rxjs';
+import { SearchRequestPipe } from 'src/app/core/pipes/search-request.pipe';
 
 @Component({
-  selector: 'app-request-list',
-  templateUrl: './request-list.component.html',
-  styleUrls: ['./request-list.component.css']
+  selector: 'app-request-mylist',
+  templateUrl: './request-mylist.component.html',
+  styleUrls: ['./request-mylist.component.css']
 })
-export class RequestListComponent implements OnInit {
+export class RequestMylistComponent implements OnInit {
 
-  requests:Request[]=[];
+  requests: Request[] = [];
   users: User[]=[];
-  sortCriteria:string="id";
-  sortOrder:string="asc";
-  searchCriteria:string ="";
-  
-  constructor(private requestsvc:RequestService,
+  sortCriteria: string = "id";
+  sortOrder:string = "asc";
+  searchCriteria: string="";
+  myid:string ="";
+
+  constructor(private requestsvc: RequestService,
     private usersvc:UserService,
-    public systemsvc:SystemServiceService) { }
+    private systemsvc: SystemServiceService) { }
 
     sortBy(prop:string):void{
       if(prop===this.sortCriteria){
-        this.sortOrder = this.sortOrder === 'des'?'asc':'desc';
+        this.sortOrder= this.sortOrder === 'desc' ? 'asc' : 'desc';
       }
-      this.sortCriteria = prop;
     }
-  
+
   ngOnInit(): void {
-    // this.systemsvc.checkIfLoggedIn();
-    this.requestsvc.list().subscribe({
+    this.systemsvc.checkIfLoggedIn();
+    this.myid = this.systemsvc._user?.id.toString()!;
+    this.requestsvc.mylist(this.myid).subscribe({
       next:(res) =>{
-        this.requests=res;
-        console.debug("Requests",res);
+        this.requests= res;
       },
-      error:(err) =>{
+      error:(err)=>{
         console.error(err);
       }
     });
@@ -50,7 +50,7 @@ export class RequestListComponent implements OnInit {
       error:(err)=>{
         console.error(err);
       }
-    })
+    });
   }
-  
+    
 }

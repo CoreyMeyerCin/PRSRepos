@@ -9,11 +9,13 @@ import { HomeComponent } from './core/home/home.component';
 import { AboutComponent } from './core/about/about.component';
 import { E404Component } from './core/e404/e404.component';
 import { MenuComponent } from './menu/menu.component';
+
 import { UserListComponent } from './classes/user/user-list/user-list.component';
 import { UserDetailComponent } from './classes/user/user-detail/user-detail.component';
 import { UserCreateComponent } from './classes/user/user-create/user-create.component';
 import { UserEditComponent } from './classes/user/user-edit/user-edit.component';
 import { UserLoginComponent } from './classes/user/user-login/user-login.component';
+
 import { VendorListComponent } from './classes/vendor/vendor-list/vendor-list.component';
 import { VendorCreateComponent } from './classes/vendor/vendor-create/vendor-create.component';
 import { VendorDetailComponent } from './classes/vendor/vendor-detail/vendor-detail.component';
@@ -26,6 +28,14 @@ import { ProductListComponent } from './classes/product/product-list/product-lis
 import { ProductEditComponent } from './classes/product/product-edit/product-edit.component';
 import { ProductDetailComponent } from './classes/product/product-detail/product-detail.component';
 import { ProductCreateComponent } from './classes/product/product-create/product-create.component';
+import { RequestMylistComponent } from './classes/request/request-mylist/request-mylist.component';
+import { SearchVendorPipe } from './core/pipes/search-vendor.pipe';
+import { SearchUsersPipe } from './core/pipes/search-users.pipe';
+import { SearchReviewPipe } from './core/pipes/search-review.pipe';
+import { SearchRequestPipe } from './core/pipes/search-request.pipe';
+import { SearchProductPipe } from './core/pipes/search-product.pipe';
+import { BooldispPipe } from './core/pipes/booldisp.pipe';
+import { SortPipe } from './core/pipes/sort.pipe';
 
 
 @NgModule({
@@ -38,7 +48,8 @@ import { ProductCreateComponent } from './classes/product/product-create/product
     UserListComponent,
     UserDetailComponent,
     UserCreateComponent,
-    UserEditComponent, UserLoginComponent,
+    UserEditComponent, 
+    UserLoginComponent,
     VendorListComponent,
     VendorCreateComponent,
     VendorDetailComponent,
@@ -51,7 +62,14 @@ import { ProductCreateComponent } from './classes/product/product-create/product
     ProductEditComponent,
     ProductDetailComponent,
     ProductCreateComponent,
-    
+    RequestMylistComponent,
+    SortPipe,
+    SearchVendorPipe,
+    SearchUsersPipe,
+    SearchReviewPipe,
+    SearchRequestPipe,
+    SearchProductPipe,
+    BooldispPipe,
   ],
   imports: [
     BrowserModule,HttpClientModule, FormsModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
+import { SystemServiceService } from '../../user/system-service.service';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -11,6 +12,7 @@ import { VendorService } from '../vendor.service';
 export class VendorEditComponent implements OnInit {
 
   vendor!:Vendor;
+  
 
   constructor(private vendorsvc:VendorService,
     private route:ActivatedRoute,
@@ -33,7 +35,7 @@ export class VendorEditComponent implements OnInit {
     let id=this.route.snapshot.params["id"];
     this.vendorsvc.get(id).subscribe({
       next:(res)=>{
-        console.debug("Customer updated");
+        console.debug("Vendor updated");
         this.vendor=res;
       },
       error:(err) => {

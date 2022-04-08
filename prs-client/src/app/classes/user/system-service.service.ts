@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.class';
-import{AppInitService} from 'src/app/app-init.service';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Routes, RouterModule, ActivatedRoute,Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from './user.class';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,21 @@ export class SystemServiceService {
 
   _user!: User |null;
 
-  constructor(
-    private appinit: AppInitService,
-    private router:Router
-
+  constructor(private http: HttpClient,
+    private router:Router,
+    public usersvc: UserService
     ) { }
 
-
+    checkAdmRev(){
+      if(this._user!.isAdmin == false && this._user!.isReviewer ==false || this._user == null){
+        this.router.navigateByUrl('/home');
+      }
+    }
+    checkAdmin(){
+      if(this._user!.isAdmin == false){
+        this.router.navigateByUrl('/home')
+      }
+    }
 
     getLoggedInUser():User|null{
       return this._user;

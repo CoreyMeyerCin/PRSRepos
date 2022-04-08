@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../user/user.service';
 import { RequestService } from '../request.service';
-import { User } from '../../user/user.class';
 import { Request } from '../request.class';
+import { UserService } from '../../user/user.service';
+import { User } from '../../user/user.class';
 import { SystemServiceService } from '../../user/system-service.service';
 
 @Component({
@@ -14,35 +14,35 @@ import { SystemServiceService } from '../../user/system-service.service';
 export class RequestCreateComponent implements OnInit {
 
   request: Request = new Request();
-  users!:User[];
+  users: User[] = [];
 
-  constructor(private usersvc: UserService,
+  constructor(
+    private router: Router,
     private requestsvc: RequestService,
-    private router:Router,
-    private systemsvc: SystemServiceService) { }
+    private usersvc: UserService,
+    private systemsvc: SystemServiceService
+  ) { }
 
-    save(): void {
-      this.request.userId = +this.request.userId;
-      this.requestsvc.create(this.request).subscribe({
-        next:(res) => {
-          console.debug("Request added");
-          this.router.navigateByUrl("/request/list");
-        },
-        error:(err) =>{
-          console.error(err);
-        }
-      })
-    } 
+  save(): void {
+    this.requestsvc.create(this.request).subscribe(
+      res => { console.log("Response from request create", res);
+      this.router.navigateByUrl(`/requests/detail/${res.id}`);
+    },
+    err => { console.log(err); }
+    );    
+  }
 
-  ngOnInit(): void {
-    this.usersvc.list().subscribe({
-      next:(res)=>{
-        console.debug("Users",res);
-        this.users=res;
-      }
-    });
+  ngOnInit() {
     this.systemsvc.checkIfLoggedIn();
-    this.request.user=this.systemsvc.getLoggedInUser()!;
+    this.usersvc.list().subscribe(
+      users => {
+        this.users = users;
+      }, 
+      err => {
+        console.error(err);
+      }
+    );
+    this.request.userId = this.systemsvc._user!.id;
   }
 
 }

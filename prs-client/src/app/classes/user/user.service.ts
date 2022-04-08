@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user.class';
 
-const baseUrl = "http://localhost:14154/api/users"
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl: any;
+  baseUrl = "http://localhost:14154/api/users"
 
 
-  constructor(private http:HttpClient) { }
+  constructor(public http:HttpClient) { }
 
   list():Observable <User[]>{
     return this.http.get(`${this.baseUrl}`) as Observable<User[]>;

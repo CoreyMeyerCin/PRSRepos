@@ -9,7 +9,7 @@ import { RequestDetailComponent } from './classes/request/request-detail/request
 import { RequestEditComponent } from './classes/request/request-edit/request-edit.component';
 import { RequestListComponent } from './classes/request/request-list/request-list.component';
 import { RequestReviewComponent } from './classes/request/request-review/request-review.component';
-import { RequestlineEditComponent } from './classes/requestline/requestline-edit/requestline-edit.component';
+// import { RequestlineEditComponent } from './classes/requestline/requestline-edit/requestline-edit.component';
 import { UserCreateComponent } from './classes/user/user-create/user-create.component';
 import { UserDetailComponent } from './classes/user/user-detail/user-detail.component';
 import { UserEditComponent } from './classes/user/user-edit/user-edit.component';
@@ -27,23 +27,29 @@ const routes: Routes = [
   {path:"", redirectTo: "/home", pathMatch: "full"},
   {path: "home", component: HomeComponent},
   {path: "about", component: AboutComponent}, 
+
   {path:"user/list",component:UserListComponent},
   {path:"user/create",component:UserCreateComponent},
   {path:"user/edit/:id",component:UserEditComponent},
   {path: "user/detail/:id", component: UserDetailComponent},
+
   {path:"vendor/list",component:VendorListComponent},
   {path:"vendor/create",component:VendorCreateComponent},
   {path:"vendor/edit/:id",component:VendorEditComponent},
   {path: "vendor/detail/:id", component: VendorDetailComponent},
+
   {path: "login", component:UserLoginComponent},
+
   {path: "request/list", component: RequestListComponent},
   {path: "request/create", component: RequestCreateComponent},
   {path:"request/edit/:id", component: RequestEditComponent},
   {path: "request/detail/:id", component: RequestDetailComponent},
+
   {path: "product/list", component: ProductListComponent},
   {path: "product/create", component: ProductCreateComponent},
   {path: "product/edit/:id", component: ProductEditComponent},
   {path: "product/detail/:id", component: ProductDetailComponent},
+
   {path: "request/list/request:id", component: RequestReviewComponent},
 
   

@@ -12,18 +12,20 @@ export class VendorDetailComponent implements OnInit {
 
   vendor!:Vendor;
 
-  constructor(private vendorsvc: VendorService,
+  constructor(
+    private vendorsvc: VendorService,
     private route:ActivatedRoute,
     private router: Router) { }
 
 
     showVerifyButton: boolean = false;
+
     remove(): void{
       this.showVerifyButton = !this.showVerifyButton;
       
     }
+
     verifyRemove():void {
-      this.showVerifyButton=false;
       this.vendorsvc.remove(this.vendor.id).subscribe({
         next:(res)=>{
           console.debug("Vendor is deleted");

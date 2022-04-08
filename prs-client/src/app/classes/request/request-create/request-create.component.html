@@ -1,54 +1,45 @@
 <app-menu></app-menu>
-<div>
-    <span id="pageTitle">Request Create</span>
-    <table *ngIf="request" class="table table-sm">
-        <tr>
-            <th>Id:</th>
-            <td>
-                <input [(ngModel)]="request.id"type="number" readonly>
-            </td>
-        </tr>
-        <tr>
-            <th>Description:</th>
-            <td>
-                <input [(ngModel)]="request.description"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Justification:</th>
-            <td>
-                <input [(ngModel)]="request.justification"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Delivery Mode:</th>
-            <td>
-                <input [(ngModel)]="request.deliveryMode"type="text">
-            </td>
-        </tr>
-        <tr>
-            <th>Status:</th>
-            <td>
-                <input [(ngModel)]="request.status"type="text" disabled="true">
-            </td>
-        </tr>
-        <tr>
-            <th>Total:</th>
-            <td>
-                <input [(ngModel)]="request.total"type="text" disabled = "true">
-            </td>
-        </tr>
-        
-        <!-- <tr>
-            <td>
-                <select [(ngModel)]="request.userId">
-                    <option *ngFor="let u of users" value="{{u.id}}">{{u.username}}</option>
-                </select>
-            </td>
-        </tr> -->
-    </table>
-    <div>
-        <button (click)="save()" class="btn btn-primary">Create</button>
-        
+<div class="component">
+    <div class="header">      
+      <span class="pagetitle">Request Create</span> | 
+      <span class="createlink">
+        <a routerLink="/requests/list">Back to request list</a>
+      </span>
     </div>
+
+    <table class="table table.sm" style="table-layout: fixed;">
+        <tr>
+          <td>Id:</td>
+          <td><input [(ngModel)]="request.id" type="number" disabled></td>
+        </tr>
+        <tr>
+          <td>User Id:</td>
+          <td><input [(ngModel)]="request.userId" type="number" disabled></td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td><input [(ngModel)]="request.description" type="string"></td>
+        </tr>
+        <tr>
+          <td>Justification:</td>
+          <td><input [(ngModel)]="request.justification" type="string"></td>
+        </tr>
+        <tr hidden>
+          <td>Rejection Reason:</td>
+          <td><input [(ngModel)]="request.rejectionReason" type="string"></td>
+        </tr>
+        <tr hidden>
+          <td>Delivery Mode:</td>
+          <td><input [(ngModel)]="request.deliveryMode" type="string" ></td>
+        </tr>
+        <tr hidden>
+          <td>Status:</td>
+          <td><input [(ngModel)]="request.status" type="string" ></td>
+        </tr>
+        <tr hidden>
+          <td>Total:</td>
+          <td><input [(ngModel)]="request.total" type="number" disabled></td>
+        </tr>
+      </table>
+  <button (click)="save()" class="btn btn-primary btn-sm">Save</button>
 </div>
