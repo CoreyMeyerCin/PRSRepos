@@ -8,6 +8,7 @@ namespace PRSCAPSTONECORRECTFINAL.Models
         public int Id { get; set; }
 
         public int RequestId { get; set; }
+        [JsonIgnore]
 
         public virtual Request Request { get; set; }
 

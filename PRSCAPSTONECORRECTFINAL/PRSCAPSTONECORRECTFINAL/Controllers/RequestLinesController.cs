@@ -32,25 +32,29 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
                              {
                                  LineTotal = rl.Quantity * p.Price
                              }).Sum(x => x.LineTotal);
+            request.Status = "CHANGED";
             await _context.SaveChangesAsync();
             return Ok();
         }
         //_________________________________________________________________________________________________
 
 
-
         // GET: api/RequestLines
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RequestLine>>> GetRequestLines()
         {
-            return await _context.RequestLines.ToListAsync();
+            return await _context.RequestLines.Include(x => x.Product).ThenInclude(x=>x.Vendor).ToListAsync();
         }
 
         // GET: api/RequestLines/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RequestLine>> GetRequestLine(int id)
         {
-            var requestLine = await _context.RequestLines.FindAsync(id);
+            var requestLine = await _context.RequestLines
+                                            .Include(x => x.Product).Include(x => x.Product.Vendor)
+                                            
+                                            .SingleOrDefaultAsync(x => x.Id == id)
+                                            ;
 
             if (requestLine == null)
             {

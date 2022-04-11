@@ -31,7 +31,7 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
 
         // sets review if total <= 50
         // PUT: api/requests/id/review
-        [HttpPut("{id}/request")]
+        [HttpPut("approve/{id}")]
         public async Task<IActionResult> SetReview(int Id, Request request)
         {
 
@@ -49,7 +49,7 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
 
         // sets approved
         // PUT: api/requests/id/setApproved
-        [HttpPut("{id}/setApproved")]
+        [HttpPut("setApproved/{id}")]
         public async Task<IActionResult> SetApproved(int Id, Request request)
         {
             request.Status = "APPROVED";
@@ -59,7 +59,7 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
 
         // sets rejected
         // PUT: api/requests/id/setRejected
-        [HttpPut("{id}/setRejected")]
+        [HttpPut("/setRejected{id}")]
         public async Task<IActionResult> SetRejected(int Id, Request request)
         {
             request.Status = "REJECTED";
@@ -81,7 +81,7 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
         {
             return await _context.Requests
                                     .Include(x => x.User)
-                                    .Include(x => x.RequestLines)
+                                    .Include(x => x.RequestLines).ThenInclude(x=>x.Product)
                                     .ToListAsync();
         }
 
@@ -92,6 +92,7 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
             var request = await _context.Requests//.FindAsync(id);
                                             .Include(x => x.User)
                                             .Include(x => x.RequestLines)
+                                            .ThenInclude(x=>x.Product)
                                             .SingleOrDefaultAsync(x => x.Id == id);
 
             if (request == null)

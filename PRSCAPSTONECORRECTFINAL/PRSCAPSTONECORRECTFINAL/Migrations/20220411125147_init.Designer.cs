@@ -9,7 +9,7 @@ using PRSCAPSTONECORRECTFINAL.Models;
 namespace PRSCAPSTONECORRECTFINAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220408205108_init")]
+    [Migration("20220411125147_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

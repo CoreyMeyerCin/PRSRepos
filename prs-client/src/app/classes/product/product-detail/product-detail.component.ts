@@ -18,6 +18,8 @@ export class ProductDetailComponent implements OnInit {
 
     showVerifyButton:boolean=false;
 
+
+
     remove():void{
       this.showVerifyButton=!this.showVerifyButton;
     }

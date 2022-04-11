@@ -46,7 +46,7 @@ export class RequestEditComponent implements OnInit {
   }
 
   edit(): void{
-    this.router.navigateByUrl(`/requests/edit/%{this.requset.id}`);
+    this.router.navigateByUrl(`/requests/edit/${this.request.id}`);
   }
   verify():void{
     this.verifyDelete = !this.verifyDelete;
@@ -55,7 +55,7 @@ export class RequestEditComponent implements OnInit {
     this.requestsvc.remove(this.request).subscribe({
       next:(res)=>{
         console.log("Response from request-edit", res);
-        this.router.navigateByUrl('/requset/list')
+        this.router.navigateByUrl('/request/list')
       },
       error:(err)=>{
         console.error(err);

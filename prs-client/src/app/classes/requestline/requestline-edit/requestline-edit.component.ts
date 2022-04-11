@@ -31,15 +31,36 @@ export class RequestlineEditComponent implements OnInit {
   ) { }
 
   save(): void {
+    this.requestline.productId= +this.requestline.productId;
     this.requestlinesvc.change(this.requestline).subscribe({
-      next:(res) => { 
-        console.log("Response from request line edit", res);
-      this.router.navigateByUrl('/requests/edit/{{request.id}}') 
-    },
-      error:(err) => { 
-        console.log(err); 
+      next:(res) => {
+        console.debug("RequestLine Added",res);
+        this.router.navigateByUrl(`/request/detail/${this.requestline.requestId}`);
+      },
+      error:(err) =>{
+        console.error(err);
       }
     });
+  }
+
+  getId():void{
+    let id=this.route.snapshot.params["id"];
+  }
+
+  refresh(): void {
+    let id=this.route.snapshot.params["id"];
+    this.requestlinesvc.get(id).subscribe({
+      next:(res)=>{
+        console.debug("Product updated");
+        this.requestline=res;
+        this.product=res.product;
+      },
+      error:(err) => {
+        console.error(err);
+      }
+
+    })
+
   }
   
 delete():void{
@@ -55,7 +76,7 @@ delete():void{
 
 
   ngOnInit(): void {
-    this.systemsvc.checkIfLoggedIn();
+   this.refresh();
   }
 }
 

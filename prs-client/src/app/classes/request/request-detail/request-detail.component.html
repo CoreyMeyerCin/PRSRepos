@@ -1,15 +1,16 @@
 <app-menu></app-menu>
-<div class="component" *ngIf="request">
+
     <div class="header">      
       <span class="pagetitle">Lines</span> | 
       <span class="actiondetail">
-        <a routerLink="/requests/edit/{{request.id}}">Other</a>
+        <a routerLink="/requests/edit/{{request.id}}">Edit Line</a>
       </span> |
       <span class="createlink">
         <a routerLink="/request/list">Back to request list</a>
       </span>
     </div>
-    <table class="table table.sm">
+    <main class="component" *ngIf="request">
+    <table class="table table-sm">
       <tr class="tableheader">
         <td>Id</td>
         <td>Description</td>
@@ -22,42 +23,49 @@
         <td>{{request.description}}</td>
         <td>{{request.status}}</td>
         <td>{{request.total | currency}}</td>
-        <td>{{request.user.username}}</td>
+        <td *ngIf="request.user">{{request.user.username}}</td>
+        <td>
+          <button (click)="review()" class="btn btn-warning">Review</button>
+        </td>
       </tr>
     </table>
-</div>
+  </main>
+<div>
 <div *ngIf="request">
-  <table class="table table.sm" style="table-layout: fixed;">
-    <tr class="tableheader">
+  <table class="table table-sm">
+    <thead>
+
+    
+    <tr>
+      <td>Product Id</td>
       <td>Product</td>
       <td>Quantity</td>
       <td>Price</td>
-      <td>Subtotal</td>
+      <td>Line Total</td>
       <td>Actions</td>
     </tr>
-    <tr *ngFor="let requestline of request.requestLines">      
-      <td>
-        <select [(ngModel)]="requestline.productId" type="number">              
-          <option *ngFor="let product of products" [ngValue]="product.id">
-            {{product.id}} | {{product.name}}
-          </option>
-        </select>            
-      </td>
-      <td>
-        <input [(ngModel)]="requestline.quantity" 
-        type="number" oninput="this.value = Math.abs(this.value)">
-      </td>
-      <td>{{requestline.product.price | currency}}</td>
-      <td>{{+requestline.product.price * requestline.quantity | currency}}</td>
+  </thead>
+  <tbody *ngIf="request.requestLines">
+    <tr *ngFor="let rl of request.requestLines">     
+      <td>{{rl.product.id}}</td> 
+      <td>{{rl.product.name}}</td>
+      <td>{{rl.quantity}}</td>
+      <td>{{rl.product.price}}</td>
+
+      <td>{{+rl.product.price * rl.quantity | currency}}</td>
+
+
       <td>
         <span class="actiondetail">
-          <button (click)="updateline(requestline)" class="btn btn-primary btn-sm">Update</button> | 
-          <button (click)="deleteline(requestline)" class="btn btn-danger btn-sm">Delete</button>
+          <button (click)="updateline(rl)" class="btn btn-primary btn-sm">Edit</button> | 
+          <button (click)="deleteline(rl)" class="btn btn-danger btn-sm">Delete</button>
         </span>
       </td>
     </tr>
+  </tbody>
   </table>
-  <div> 
+  
+  <div>
     <p>
       <span class="tableheader">Total: </span><span>{{request.total | currency}}</span>
     </p>

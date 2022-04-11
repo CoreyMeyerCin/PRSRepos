@@ -1,2 +1,29 @@
-<<p>requestline-edit works!</p>
->
+<app-menu></app-menu>
+<div class="component" *ngIf="requestline">
+    <div class="header">      
+      <span class="pagetitle">Request Line Create</span> | 
+      <span class="createlink">
+        <a routerLink="/request/detail/{{requestline.requestId}}">Back to request</a>
+      </span>
+    </div>
+
+    <table class="table table-sm">
+    <tr>
+    <td>Product Id:</td>
+    <td>{{requestline.productId}}</td>
+    </tr>
+      <tr>
+        <td>Product:</td>
+        <td>{{requestline.product.name}}</td>
+      </tr>
+      <tr>
+          <td>Vendor Name</td>
+          <td>{{requestline.product.vendor.name}}</td>
+      </tr>
+      <tr>
+        <td>Quantity:</td>
+        <td><input [(ngModel)]="requestline.quantity" type="number"></td>
+      </tr>
+    </table>
+  <button (click)="save()" class="btn btn-primary btn-sm">Save</button>
+</div>

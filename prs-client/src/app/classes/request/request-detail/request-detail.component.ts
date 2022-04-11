@@ -31,6 +31,20 @@ export class RequestDetailComponent implements OnInit {
     private productsvc: ProductService
   ) { }
 
+
+    review():void{
+      this.requestsvc.review(this.request).subscribe({
+        next:(res) =>{
+          console.debug("Reviewed request",res);
+          this.refresh();
+          
+        },
+        error:(err)=>{
+          console.error(err);
+        }
+      })
+    }
+
     goRlCreate(request:Request){
       this.router.navigateByUrl(`/requestlines/create/${request.id}`);
     }
@@ -49,37 +63,17 @@ export class RequestDetailComponent implements OnInit {
       })
     }
 
-    refresh():void{
-      let requestId=this.route.snapshot.params["id"];
-      this.requestsvc.get(requestId).subscribe({
-        next:(res)=>{
-          this.request=res;
-        },
-        error:(err)=>{
-          console.error(err);
-        }
-      })
-    }
+  
 
     updateline(requestline:RequestLine):void{
-      this.request.rejectionReason="";
-      this.request.status="REVIEW";
-      this.requestlinesvc.change(requestline).subscribe({
-        next:(res)=>{
-          console.log("response from the Requestline-edit",res);
-        },
-        error:(err)=>{
-          console.error(err);
-        }
-      })
+     this.router.navigateByUrl(`/requestlines/edit/${requestline.id}`)
     }
 
     deleteline(requestline:RequestLine):void{
-      this.request.rejectionReason="";
-      this.request.status="REVIEW";
-      this.requestlinesvc.remove(+requestline).subscribe({
+      this.requestlinesvc.remove(requestline.id).subscribe({
         next:(res)=>{
           console.log("Response from RequestLine-Delete", res);
+          this.refresh();
         },
         error:(err)=>{
           console.error(err);
@@ -99,21 +93,25 @@ export class RequestDetailComponent implements OnInit {
         }
       })
     }
+refresh(): void{
+  let requestId = this.route.snapshot.params["id"];
+  this.requestsvc.get(requestId).subscribe({
+    next:(res)=>{
+      console.debug(res);
+      this.request=res;
+      if(this.request.status == "DENIED"){
+        this.denied = true;
+      }
+    },
+    error:(err)=>{
+      console.error(err);
+    }
+  });
+}
 
   ngOnInit(): void {
     // this.systemsvc.checkIfLoggedIn();
-    let requestId = this.route.snapshot.params["id"];
-    this.requestsvc.get(requestId).subscribe({
-      next:(res)=>{
-        this.request=res;
-        if(this.request.status == "DENIED"){
-          this.denied = true;
-        }
-      },
-      error:(err)=>{
-        console.error(err);
-      }
-    });
+   this.refresh();
     this.productsvc.list().subscribe({
       next:(res)=>{
         this.products=res;

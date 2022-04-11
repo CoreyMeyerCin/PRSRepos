@@ -39,6 +39,10 @@ export class RequestService {
     return this.http.delete(`${this.baseUrl}/${request.id}`) as Observable<any>;
   }
 
+  review(request: Request): Observable<any> {
+    return this.http.put(`${this.baseUrl}/approve/${request.id}`,request) as Observable<any>;
+  }
+
   approve(request: Request): Observable<any> {
     return this.http.put(`${this.baseUrl}/approve/${request.id}`, request) as Observable<any>;
   }

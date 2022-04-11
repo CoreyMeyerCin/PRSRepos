@@ -28,7 +28,7 @@ export class RequestlineCreateComponent implements OnInit {
     this.requestlinesvc.create(this.requestline).subscribe({
       next:(res)=> {
         console.log("Requestline",res);
-        this.router.navigateByUrl(`/request/detail/${this.requestline.requestId}`)
+        this.router.navigateByUrl(`/request/detail/${this.requestline.requestId}`);
       },
       error:(err)=>{
         console.error(err);
