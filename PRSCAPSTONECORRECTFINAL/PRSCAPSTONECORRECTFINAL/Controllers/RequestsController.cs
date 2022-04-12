@@ -23,8 +23,9 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
         public async Task<ActionResult<IEnumerable<Request>>> GetRequestsAsReview(int Id)
         {
             var requests = await _context.Requests
-                            .Where(x => x.Status == "REVIEW"
-                            && x.Id != Id)
+                            .Where(x=>x.UserId!=Id)
+                            .Include(x => x.RequestLines)
+                            .Include(x=>x.User)
                             .ToListAsync();
             return requests;
         }
@@ -59,7 +60,7 @@ namespace PRSCAPSTONECORRECTFINAL.Controllers
 
         // sets rejected
         // PUT: api/requests/id/setRejected
-        [HttpPut("/setRejected{id}")]
+        [HttpPut("setRejected/{id}")]
         public async Task<IActionResult> SetRejected(int Id, Request request)
         {
             request.Status = "REJECTED";

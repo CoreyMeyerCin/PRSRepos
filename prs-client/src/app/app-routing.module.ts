@@ -45,13 +45,13 @@ const routes: Routes = [
   {path: "request/create", component: RequestCreateComponent},
   {path:"requests/edit/:id", component: RequestEditComponent},
   {path: "request/detail/:id", component: RequestDetailComponent},
+  {path: "request/reviews/:id", component: RequestReviewComponent},
 
   {path: "product/list", component: ProductListComponent},
   {path: "product/create", component: ProductCreateComponent},
   {path: "product/edit/:id", component: ProductEditComponent},
   {path: "product/detail/:id", component: ProductDetailComponent},
 
-  {path: "request/list/request:id", component: RequestReviewComponent},
   {path: "requestlines/create/:id", component: RequestlineCreateComponent},
   {path: "requestlines/edit/:id", component: RequestlineEditComponent},
   

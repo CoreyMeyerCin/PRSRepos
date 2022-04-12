@@ -39,23 +39,23 @@ export class RequestEditComponent implements OnInit {
     this.request.status = "REVIEW";
     this.requestsvc.change(this.request).subscribe(
       res => { console.log("Response from request edit", res);
-      this.router.navigateByUrl('/requests/list') 
+      this.router.navigateByUrl(`/request/detail/${this.request.id}`);
     },
       err => { console.log(err); }
     );
   }
 
   edit(): void{
-    this.router.navigateByUrl(`/requests/edit/${this.request.id}`);
+    this.router.navigateByUrl(`/request/detail/${this.request.id}`);
   }
   verify():void{
     this.verifyDelete = !this.verifyDelete;
   }
   delete():void{
-    this.requestsvc.remove(this.request).subscribe({
+    this.requestsvc.remove(+this.request).subscribe({
       next:(res)=>{
         console.log("Response from request-edit", res);
-        this.router.navigateByUrl('/request/list')
+        this.router.navigateByUrl(`/request/detail/${this.request.id}`);
       },
       error:(err)=>{
         console.error(err);
@@ -63,10 +63,10 @@ export class RequestEditComponent implements OnInit {
     });
   }
   confirmdel():void {
-    this.requestsvc.remove(this.request).subscribe({
+    this.requestsvc.remove(+this.request).subscribe({
       next:(res)=>{
         console.debug("Request is deleted");
-      this.router.navigateByUrl("/user/list");
+        this.router.navigateByUrl(`/request/detail/${this.request.id}`);
       },
       error: (err) =>{
           console.error(err);

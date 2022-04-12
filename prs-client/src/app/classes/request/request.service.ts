@@ -20,9 +20,6 @@ export class RequestService {
   list(): Observable<Request[]> {
     return this.http.get(`${this.baseUrl}`) as Observable<Request[]>;
   }  
-  listRevs(rid: string): Observable<Request[]> {
-    return this.http.get(`${this.revUrl}/${rid}`) as Observable<Request[]>;
-  }
   mylist(myid: string): Observable<Request[]> {
     return this.http.get(`${this.myUrl}/${myid}`) as Observable<Request[]>;
   }
@@ -35,20 +32,26 @@ export class RequestService {
   change(request: Request): Observable<any> {
     return this.http.put(`${this.baseUrl}/${request.id}`, request) as Observable<any>;
   }
-  remove(request: Request): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${request.id}`) as Observable<any>;
+  remove(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`) as Observable<Request>;
   }
 
   review(request: Request): Observable<any> {
-    return this.http.put(`${this.baseUrl}/approve/${request.id}`,request) as Observable<any>;
+    return this.http.put(`${this.baseUrl}/approve/${request.id}`, request) as Observable<any>;
   }
+  reviews(id:number): Observable<Request[]>{
+    return this.http.get(`${this.baseUrl}/review/${id}`) as Observable<Request[]>;
+  } 
 
   approve(request: Request): Observable<any> {
-    return this.http.put(`${this.baseUrl}/approve/${request.id}`, request) as Observable<any>;
+    return this.http.put(`${this.baseUrl}/setApproved/${request.id}`, request) as Observable<any>;
   }
 
   deny(request: Request): Observable<any> {
     return this.http.put(`${this.baseUrl}/deny/${request.id}`, request) as Observable<any>;
+  }
+  reject(request: Request): Observable<any> {
+    return this.http.put(`${this.baseUrl}/setRejected/${request.id}`, request) as Observable<any>;
   }
 
 }

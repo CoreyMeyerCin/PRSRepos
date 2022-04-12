@@ -94,23 +94,26 @@ export class RequestDetailComponent implements OnInit {
       })
     }
 refresh(): void{
-  let requestId = this.route.snapshot.params["id"];
-  this.requestsvc.get(requestId).subscribe({
+  let id = this.route.snapshot.params["id"];
+
+  this.requestsvc.get(id).subscribe({
     next:(res)=>{
       console.debug(res);
       this.request=res;
-      if(this.request.status == "DENIED"){
-        this.denied = true;
-      }
-    },
+      
+      },
     error:(err)=>{
       console.error(err);
     }
   });
 }
 
+toReviews():void{
+  this.router.navigateByUrl(`/request/reviews/${this.request.user.id}`)
+}
+
   ngOnInit(): void {
-    // this.systemsvc.checkIfLoggedIn();
+  
    this.refresh();
     this.productsvc.list().subscribe({
       next:(res)=>{

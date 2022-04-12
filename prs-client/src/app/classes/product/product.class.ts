@@ -10,5 +10,7 @@ export class Product{
     photoPath:string="";
     vendorId:number=0;
     vendor!:Vendor;
-    constructor(){}
+    constructor(){
+        
+    }
 }

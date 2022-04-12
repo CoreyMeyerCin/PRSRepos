@@ -38,6 +38,7 @@ import { BooldispPipe } from './core/pipes/booldisp.pipe';
 import { SortPipe } from './core/pipes/sort.pipe';
 import { RequestlineCreateComponent } from './classes/requestline/requestline-create/requestline-create.component';
 import { RequestlineEditComponent } from './classes/requestline/requestline-edit/requestline-edit.component';
+import { RequestReviewComponent } from './classes/request/request-review/request-review.component';
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import { RequestlineEditComponent } from './classes/requestline/requestline-edit
     SearchProductPipe,
     BooldispPipe,
     RequestlineCreateComponent,
-    
+    RequestReviewComponent,
     
   ],
   imports: [

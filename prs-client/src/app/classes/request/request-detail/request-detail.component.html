@@ -2,8 +2,8 @@
 
     <div class="header">      
       <span class="pagetitle">Lines</span> | 
-      <span class="actiondetail">
-        <a routerLink="/requests/edit/{{request.id}}">Edit Line</a>
+      <span *ngIf="request" class="actiondetail">
+        <a routerLink="/requests/edit/{{request.id}}">Edit Request</a>
       </span> |
       <span class="createlink">
         <a routerLink="/request/list">Back to request list</a>
@@ -73,4 +73,5 @@
     <button class="btn btn-primary btn-sm" (click)="goRlCreate(request)" style="color:white">New Line</button> | 
     <button (click)="save()" class="btn btn-success btn-sm">Submit Request</button>
   </div>
+  <button (click)="toReviews()" class="btn btn-success btn-sm">Review Requests</button>
 </div>
